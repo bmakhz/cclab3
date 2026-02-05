@@ -1,0 +1,26 @@
+PES2UG23CS120
+
+Yes, there are alternative commands to delete Docker images completely in one go:
+
+1. Delete image by Image ID (removes all tags at once):
+   docker rmi <image_id>
+   Example: docker rmi 2bc1d45bf247
+   This deletes the image along with all tags pointing to the same image ID.
+
+2. Force delete image (even if containers exist):
+   docker rmi -f <image_name>
+   This forcefully removes the image even if containers are using it.
+
+3. Remove all unused images:
+   docker image prune -a
+   This removes all images that are not being used by any container.
+
+4. Remove multiple images at once:
+   docker rmi <image1> <image2> <image3>
+   Example: docker rmi spam-web-app hello-world python:3.10-slim
+
+5. Remove all images (dangerous - removes everything):
+   docker rmi $(docker images -q)
+   This deletes all Docker images from the system.
+
+The most efficient method to delete an image with multiple tags is to use the Image ID directly (method 1), as it removes all tags associated with that image in a single command.
